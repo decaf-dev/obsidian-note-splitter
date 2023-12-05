@@ -1,4 +1,5 @@
-import { Editor, MarkdownView, Plugin } from "obsidian";
+import { Editor, MarkdownView, Notice, Plugin } from "obsidian";
+import { findFrontmatterEndIndex } from "./utils";
 
 export default class NoteSplitterPlugin extends Plugin {
 	async onload() {
@@ -8,15 +9,28 @@ export default class NoteSplitterPlugin extends Plugin {
 			editorCallback: async (_editor: Editor, view: MarkdownView) => {
 				const file = view.file;
 				if (file) {
-					const data = await this.app.vault.cachedRead(file);
+					let data = await this.app.vault.cachedRead(file);
+					const frontmatterEndIndex = findFrontmatterEndIndex(data);
+
+					//Ignore frontmatter
+					if (frontmatterEndIndex !== -1) {
+						data = data.slice(frontmatterEndIndex + 1);
+					}
+					if (data === ""){
+						new Notice("No content to split");
+						return;
+					}
+
 					const split = data.split("\n").filter((line) =>
 						 line !== ""
 					);
-					for (const line of split) {
+					for (let i = 0; i < split.length; i++) {
+						const line = split[i].trim();
 						await this.app.vault.create(
-							`note-splitter-${Date.now}.md`, line
+							`note-splitter/split-note-${Date.now() + i}.md`, line
 						);
 					}
+					new Notice("Split into " + split.length + " note" + (split.length > 1 ? "s" : ""));
 				}
 			},
 		});
