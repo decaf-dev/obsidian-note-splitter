@@ -24,6 +24,23 @@ export default class NoteSplitterPlugin extends Plugin {
 					const split = data.split("\n").filter((line) =>
 						 line !== ""
 					);
+
+					if (split.length === 0) {
+						new Notice("No content to split");
+						return;
+					}
+
+					if (split.length === 1) {
+						new Notice("No need to split");
+						return;
+					}
+
+					try {
+						this.app.vault.createFolder("note-splitter");
+					} catch (err){
+						//Folder already exists
+					}
+
 					for (let i = 0; i < split.length; i++) {
 						const line = split[i].trim();
 						await this.app.vault.create(
