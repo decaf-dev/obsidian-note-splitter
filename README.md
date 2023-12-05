@@ -2,7 +2,7 @@
 
 ## About
 
-This plugin allows you to split a note into individual notes based on a delimeter. The default delimeter is a new line.
+This plugin allows you to split an Obsidian note into individual notes based on a delimeter. The default delimeter is a new line.
 
 ## Installation
 

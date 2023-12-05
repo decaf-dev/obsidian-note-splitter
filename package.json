@@ -1,7 +1,7 @@
 {
 	"name": "obsidian-note-splitter",
 	"version": "0.1.0",
-	"description": "Splits notes based on a delimiter",
+	"description": "Split notes based on a delimiter",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
