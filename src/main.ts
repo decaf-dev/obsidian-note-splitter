@@ -36,15 +36,22 @@ export default class NoteSplitterPlugin extends Plugin {
 					}
 
 					try {
-						this.app.vault.createFolder("note-splitter");
+						await this.app.vault.createFolder("note-splitter");
 					} catch (err){
+						//Folder already exists
+					}
+
+										const currentTime = Date.now();
+					try {
+						await this.app.vault.createFolder(`note-splitter/group-${currentTime}`);
+					}catch(err){
 						//Folder already exists
 					}
 
 					for (let i = 0; i < split.length; i++) {
 						const line = split[i].trim();
 						await this.app.vault.create(
-							`note-splitter/split-note-${Date.now() + i}.md`, line
+							`note-splitter/group-${currentTime}/split-note-${Date.now() + i}.md`, line
 						);
 					}
 					new Notice("Split into " + split.length + " note" + (split.length > 1 ? "s" : ""));
