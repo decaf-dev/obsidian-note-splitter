@@ -1,6 +1,6 @@
 import { Editor, MarkdownView, Notice, Plugin } from "obsidian";
 import { findFrontmatterEndIndex, getTitleFromContent } from "./utils";
-import NoteSplitterSettingsTab from "./setting-tab";
+import NoteSplitterSettingsTab from "./note-splitter-settings-tab";
 
 interface NoteSplitterSettings {
 	saveFolderPath: string;
