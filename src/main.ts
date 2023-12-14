@@ -1,5 +1,5 @@
 import { Editor, MarkdownView, Notice, Plugin } from "obsidian";
-import { findFrontmatterEndIndex } from "./utils";
+import { findFrontmatterEndIndex, getTitleFromContent } from "./utils";
 import NoteSplitterSettingsTab from "./setting-tab";
 
 interface NoteSplitterSettings {
@@ -91,11 +91,7 @@ export default class NoteSplitterPlugin extends Plugin {
 
 						let fileName = "";
 						if (this.settings.useContentAsTitle) {
-							fileName = line;
-							//If the line has a period, use the text before the period as the title
-							if (line.includes(". ")) {
-								fileName = line.split(". ")[0];
-							}
+							fileName = getTitleFromContent(line);
 						} else {
 							fileName = `split-note-${Date.now() + i}`;
 						}
