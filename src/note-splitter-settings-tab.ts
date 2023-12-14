@@ -29,7 +29,7 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName("Group name")
-			.setDesc("The name of the group folder that split notes will be placed in. A timestamp will be added to this name")
+			.setDesc("The name of the group folder that split notes will be placed in. A timestamp will be added to this name. e.g. group-123456")
 			.addText((text) =>
 				text
 					.setValue(this.plugin.settings.groupFolderName)
@@ -54,7 +54,7 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName("Use content as title")
-			.setDesc("If true, the sentence will be used as the title of the note, otherwise a timestamp will be used")
+			.setDesc("If true, the first sentence will be used as the title of the note, otherwise a timestamp will be used e.g. note-splitter-123456")
 			.addToggle((text) =>
 				text
 					.setValue(this.plugin.settings.useContentAsTitle)
