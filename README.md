@@ -21,3 +21,11 @@ This plugin allows you to split an Obsidian note into individual notes based on 
 2. Open the Obsidian command prompt (cmd + shift + p)
 3. Type `Split by delimeter`
 4. Press enter
+
+### Setting a delimeter
+
+The delimeter to split by can be configured in the plugin settings. The default delimeter is a new line `\n`.
+
+### Frontmatter
+
+When splitting a note, this plugin will ignore frontmatter. Only the content after the frontmatter block will be split.
