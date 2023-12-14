@@ -19,5 +19,5 @@ This plugin allows you to split an Obsidian note into individual notes based on 
 
 1. Open a note that you want to split
 2. Open the Obsidian command prompt (cmd + shift + p)
-3. Type `Split by delimter`
+3. Type `Split by delimeter`
 4. Press enter

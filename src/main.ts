@@ -26,8 +26,8 @@ export default class NoteSplitterPlugin extends Plugin {
 		this.addSettingTab(new NoteSplitterSettingsTab(this.app, this));
 
 		this.addCommand({
-			id: "split-by-delimter",
-			name: "Split by delimter",
+			id: "split-by-delimeter",
+			name: "Split by delimeter",
 			editorCallback: async (_editor: Editor, view: MarkdownView) => {
 				const file = view.file;
 				if (file) {
