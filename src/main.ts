@@ -1,17 +1,15 @@
 import { Editor, MarkdownView, Notice, Plugin, normalizePath } from "obsidian";
-import { escapeInvalidFileNameChars, findFrontmatterEndIndex, removeWikiLinkUrl, trimForFileName } from "./utils";
+import { escapeInvalidFileNameChars, findFrontmatterEndIndex, trimForFileName } from "./utils";
 import NoteSplitterSettingsTab from "./obsidian/note-splitter-settings-tab";
 
 interface NoteSplitterSettings {
 	saveFolderPath: string;
-	groupFolderName: string;
 	useContentAsTitle: boolean;
 	delimiter: string;
 }
 
 const DEFAULT_SETTINGS: NoteSplitterSettings = {
 	saveFolderPath: "note-splitter",
-	groupFolderName: "group",
 	useContentAsTitle: false,
 	delimiter: "\\n",
 }
@@ -69,20 +67,10 @@ export default class NoteSplitterPlugin extends Plugin {
 					return;
 				}
 
-				const currentTime = Date.now();
 				const folderPath = this.settings.saveFolderPath;
 
 				try {
 					await this.app.vault.createFolder(folderPath);
-				} catch (err) {
-					//Folder already exists
-				}
-
-				const groupFolderName = this.settings.groupFolderName;
-				const groupFolderPath = normalizePath(`${folderPath}/${groupFolderName}-${currentTime}`);
-
-				try {
-					await this.app.vault.createFolder(groupFolderPath);
 				} catch (err) {
 					//Folder already exists
 				}
@@ -92,14 +80,13 @@ export default class NoteSplitterPlugin extends Plugin {
 
 					let fileName = line;
 					if (this.settings.useContentAsTitle) {
-						fileName = removeWikiLinkUrl(fileName);
 						fileName = escapeInvalidFileNameChars(fileName);
 						fileName = trimForFileName(fileName, ".md");
 					} else {
 						fileName = `split-note-${Date.now() + i}`;
 					}
 
-					const filePath = normalizePath(`${groupFolderPath}/${fileName}.md`);
+					const filePath = normalizePath(`${folderPath}/${fileName}.md`);
 
 					try {
 						await this.app.vault.create(
@@ -107,7 +94,7 @@ export default class NoteSplitterPlugin extends Plugin {
 						);
 					} catch (err) {
 						if (err.message.includes("already exists")) {
-							const newFilePath = `${groupFolderPath}/Tab conflict ${crypto.randomUUID()}.md`;
+							const newFilePath = `${folderPath}/Split conflict ${crypto.randomUUID()}.md`;
 							try {
 								await this.app.vault.create(
 									newFilePath, line

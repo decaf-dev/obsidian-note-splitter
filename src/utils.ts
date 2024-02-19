@@ -15,17 +15,6 @@ export const findFrontmatterEndIndex = (value: string) => {
 }
 
 /**
- * Removes the wiki link URL from the string
- * @example
- * removeWikiLinkUrl("This is a [link](https://example.com)") // "This is a link"
- * @param value 
- * @returns 
- */
-export const removeWikiLinkUrl = (value: string) => {
-	return value.replace(/\((https?:\/\/.*?)\)/g, '');
-}
-
-/**
  * Escapes characters invalid for a file name
  * @param value 
  */
