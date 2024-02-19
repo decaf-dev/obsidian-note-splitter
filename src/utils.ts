@@ -14,7 +14,22 @@ export const findFrontmatterEndIndex = (value: string) => {
 	return -1;
 }
 
-export const getTitleFromContent = (value: string) => {
+/**
+ * Removes the wiki link URL from the string
+ * @example
+ * removeWikiLinkUrl("This is a [link](https://example.com)") // "This is a link"
+ * @param value 
+ * @returns 
+ */
+export const removeWikiLinkUrl = (value: string) => {
+	return value.replace(/\((https?:\/\/.*?)\)/g, '');
+}
+
+/**
+ * Escapes characters invalid for a file name
+ * @param value 
+ */
+export const escapeInvalidFileNameChars = (value: string) => {
 	// Replace colon with hyphen
 	value = value.replace(/:/g, "-");
 	// Replace back slash with space
@@ -31,10 +46,13 @@ export const getTitleFromContent = (value: string) => {
 	value = value.replace(/#/g, "");
 	// Replace pipe with nothing
 	value = value.replace(/\|/g, "");
-	return trimForMacOS(value, ".md");
+	return value;
 }
 
-const trimForMacOS = (value: string, extension: string) => {
+/**
+ * Trims the string to the maximum length allowed for a file name
+ */
+export const trimForFileName = (value: string, extension: string) => {
 	const MAX_LENGTH_MAC_OS = 255;
 	return value.substring(0, MAX_LENGTH_MAC_OS - extension.length - 1);
 }
