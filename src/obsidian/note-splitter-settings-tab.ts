@@ -28,19 +28,6 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName("Group name")
-			.setDesc("The name of the group folder that split notes will be placed in. A timestamp will be added to this name. e.g. group-1702591910")
-			.addText((text) =>
-				text
-					.setValue(this.plugin.settings.groupFolderName)
-					.onChange(async (value) => {
-						this.plugin.settings.groupFolderName = value;
-						await this.plugin.saveSettings();
-					})
-			);
-
-
-		new Setting(containerEl)
 			.setName("Delimeter")
 			.setDesc("The delimeter to split by")
 			.addText((text) =>
