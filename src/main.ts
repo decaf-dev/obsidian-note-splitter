@@ -90,10 +90,10 @@ export default class NoteSplitterPlugin extends Plugin {
 				for (let i = 0; i < splitLines.length; i++) {
 					const line = splitLines[i].trim();
 
-					let fileName = "";
+					let fileName = line;
 					if (this.settings.useContentAsTitle) {
 						fileName = removeWikiLinkUrl(fileName);
-						fileName = escapeInvalidFileNameChars(line);
+						fileName = escapeInvalidFileNameChars(fileName);
 						fileName = trimForFileName(fileName, ".md");
 					} else {
 						fileName = `split-note-${Date.now() + i}`;
