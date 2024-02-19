@@ -116,8 +116,10 @@ export default class NoteSplitterPlugin extends Plugin {
 								console.error(err);
 								new Notice(`Error creating file: ${err.message}`);
 							}
+							continue;
 						}
-						throw err;
+						new Notice(`Error creating file: ${err.message}`);
+						console.log(err);
 					}
 				}
 				new Notice("Split into " + splitLines.length + " note" + (splitLines.length > 1 ? "s" : ""));
