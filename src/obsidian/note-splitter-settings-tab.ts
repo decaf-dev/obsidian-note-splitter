@@ -1,5 +1,5 @@
 import { App, PluginSettingTab, Setting } from "obsidian";
-import NoteSplitterPlugin from "./main";
+import NoteSplitterPlugin from "../main";
 
 export default class NoteSplitterSettingsTab extends PluginSettingTab {
 
