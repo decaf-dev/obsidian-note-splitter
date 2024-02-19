@@ -15,18 +15,26 @@ export const findFrontmatterEndIndex = (value: string) => {
 }
 
 export const getTitleFromContent = (value: string) => {
-	let title = value;
-	//If the line has a period, use the text before the period as the title
-	if (value.includes(". ")) {
-		title = title.split(". ")[0];
-	}
-	title = title.replace(/:/g, "-");
-	title = title.replace(/\\/g, " ");
-	title = title.replace(/\//g, " ");
-	title = title.replace(/\^/g, "");
-	title = title.replace(/\[/g, "");
-	title = title.replace(/\]/g, "");
-	title = title.replace(/#/g, "");
-	title = title.replace(/\|/g, "");
-	return title;
+	// Replace colon with hyphen
+	value = value.replace(/:/g, "-");
+	// Replace back slash with space
+	value = value.replace(/\\/g, " ");
+	// Replace forward slash with space
+	value = value.replace(/\//g, " ");
+	// Replace carrot with nothing
+	value = value.replace(/\^/g, "");
+	// Replace left bracket with nothing
+	value = value.replace(/\[/g, "");
+	// Replace right bracket with nothing
+	value = value.replace(/\]/g, "");
+	// Replace hash tag with nothing
+	value = value.replace(/#/g, "");
+	// Replace pipe with nothing
+	value = value.replace(/\|/g, "");
+	return trimForMacOS(value, ".md");
+}
+
+const trimForMacOS = (value: string, extension: string) => {
+	const MAX_LENGTH_MAC_OS = 255;
+	return value.substring(0, MAX_LENGTH_MAC_OS - extension.length - 1);
 }
