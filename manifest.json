@@ -1,7 +1,7 @@
 {
 	"id": "note-splitter",
 	"name": "Note Splitter",
-	"version": "0.4.0",
+	"version": "0.5.0",
 	"minAppVersion": "0.15.0",
 	"description": "Split notes based on a delimeter.",
 	"author": "Trey Wallis",
