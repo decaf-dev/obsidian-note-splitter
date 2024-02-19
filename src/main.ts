@@ -100,9 +100,25 @@ export default class NoteSplitterPlugin extends Plugin {
 					}
 
 					const filePath = normalizePath(`${groupFolderPath}/${fileName}.md`);
-					await this.app.vault.create(
-						filePath, line
-					);
+
+					try {
+						await this.app.vault.create(
+							filePath, line
+						);
+					} catch (err) {
+						if (err.message.includes("already exists")) {
+							const newFilePath = `${groupFolderPath}/Tab conflict ${crypto.randomUUID()}.md`;
+							try {
+								await this.app.vault.create(
+									newFilePath, line
+								);
+							} catch (err) {
+								console.error(err);
+								new Notice(`Error creating file: ${err.message}`);
+							}
+						}
+						throw err;
+					}
 				}
 				new Notice("Split into " + splitLines.length + " note" + (splitLines.length > 1 ? "s" : ""));
 			},
