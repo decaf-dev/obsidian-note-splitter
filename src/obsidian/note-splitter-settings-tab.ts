@@ -28,8 +28,8 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName("Delimeter")
-			.setDesc("The delimeter to split by")
+			.setName("delimiter")
+			.setDesc("The delimiter to split by")
 			.addText((text) =>
 				text
 					.setValue(this.plugin.settings.delimiter)

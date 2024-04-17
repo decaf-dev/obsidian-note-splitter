@@ -3,7 +3,7 @@
 	"name": "Note Splitter",
 	"version": "0.6.0",
 	"minAppVersion": "0.15.0",
-	"description": "Split notes based on a delimeter.",
+	"description": "Split notes based on a delimiter.",
 	"author": "Trey Wallis",
 	"authorUrl": "https://github.com/trey-wallis",
 	"fundingUrl": "https://buymeacoffee.com/treywallis",

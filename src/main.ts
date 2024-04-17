@@ -24,17 +24,17 @@ export default class NoteSplitterPlugin extends Plugin {
 		this.addSettingTab(new NoteSplitterSettingsTab(this.app, this));
 
 		this.addCommand({
-			id: "split-by-delimeter",
-			name: "Split by delimeter",
+			id: "split-by-delimiter",
+			name: "Split by delimiter",
 			editorCallback: async (_editor: Editor, view: MarkdownView) => {
 				const file = view.file;
 				if (file === null) return;
 
-				let delimeter = this.settings.delimiter;
+				let delimiter = this.settings.delimiter;
 				//Obsidian will store `\n`` as `\\n` in the settings
-				delimeter = delimeter.replace(/\\n/g, "\n");
+				delimiter = delimiter.replace(/\\n/g, "\n");
 
-				if (delimeter === "") {
+				if (delimiter === "") {
 					new Notice("No delimiter set. Please set a delimiter in the settings");
 					return;
 				}
@@ -52,7 +52,7 @@ export default class NoteSplitterPlugin extends Plugin {
 					return;
 				}
 
-				const splitLines = dataWithoutFrontmatter.split(delimeter).filter((line) =>
+				const splitLines = dataWithoutFrontmatter.split(delimiter).filter((line) =>
 					line !== ""
 				);
 
