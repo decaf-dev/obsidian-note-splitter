@@ -1,8 +1,12 @@
 # Note Splitter
 
+This plugin allows you to split an Obsidian note into individual notes based on a specified sequence of characters (a delimiter). The default delimiter is a new line.
+
 ## About
 
-This plugin allows you to split an Obsidian note into individual notes based on a specified sequence of characters (a delimiter). The default delimiter is a new line.
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Settings](#settings)
 
 ## Installation
 
@@ -20,10 +24,10 @@ This plugin allows you to split an Obsidian note into individual notes based on 
 3. Type `Split by delimiter`
 4. Press enter
 
-### Setting a delimiter
-
-The delimiter to split by can be configured in the plugin settings. The default delimiter is a new line `\n`.
-
 ### Frontmatter
 
 When splitting a note, this plugin will ignore frontmatter. Only the content after the frontmatter block will be split.
+
+## Settings
+
+The delimiter to split by can be configured in the plugin settings. The default delimiter is a new line `\n`.
