@@ -12,8 +12,7 @@ const DEFAULT_SETTINGS: NoteSplitterSettings = {
 	saveFolderPath: "note-splitter",
 	useContentAsTitle: false,
 	delimiter: "\\n",
-}
-
+};
 
 export default class NoteSplitterPlugin extends Plugin {
 	settings: NoteSplitterSettings;
@@ -52,10 +51,9 @@ export default class NoteSplitterPlugin extends Plugin {
 					return;
 				}
 
-				const splitLines = dataWithoutFrontmatter.split(delimiter).filter((line) =>
-					line !== ""
-				);
-
+				const splitLines = dataWithoutFrontmatter
+					.split(delimiter)
+					.filter((line) => line !== "");
 
 				if (splitLines.length === 0) {
 					new Notice("No content to split");
@@ -89,16 +87,12 @@ export default class NoteSplitterPlugin extends Plugin {
 					const filePath = normalizePath(`${folderPath}/${fileName}.md`);
 
 					try {
-						await this.app.vault.create(
-							filePath, line
-						);
+						await this.app.vault.create(filePath, line);
 					} catch (err) {
 						if (err.message.includes("already exists")) {
 							const newFilePath = `${folderPath}/Split conflict ${crypto.randomUUID()}.md`;
 							try {
-								await this.app.vault.create(
-									newFilePath, line
-								);
+								await this.app.vault.create(newFilePath, line);
 							} catch (err) {
 								console.error(err);
 								new Notice(`Error creating file: ${err.message}`);
@@ -114,7 +108,7 @@ export default class NoteSplitterPlugin extends Plugin {
 		});
 	}
 
-	onunload() { }
+	onunload() {}
 
 	async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
