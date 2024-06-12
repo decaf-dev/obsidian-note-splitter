@@ -12,11 +12,11 @@ export const findFrontmatterEndIndex = (value: string) => {
 	}
 	// If no match is found, return -1
 	return -1;
-}
+};
 
 /**
  * Escapes characters invalid for a file name
- * @param value 
+ * @param value
  */
 export const escapeInvalidFileNameChars = (value: string) => {
 	// Replace colon with hyphen
@@ -36,7 +36,7 @@ export const escapeInvalidFileNameChars = (value: string) => {
 	// Replace pipe with nothing
 	value = value.replace(/\|/g, "");
 	return value;
-}
+};
 
 /**
  * Trims the string to the maximum length allowed for a file name
@@ -44,4 +44,4 @@ export const escapeInvalidFileNameChars = (value: string) => {
 export const trimForFileName = (value: string, extension: string) => {
 	const MAX_LENGTH_MAC_OS = 255;
 	return value.substring(0, MAX_LENGTH_MAC_OS - extension.length - 1);
-}
+};

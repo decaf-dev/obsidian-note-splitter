@@ -46,7 +46,7 @@ if (prod) {
 	await context.rebuild();
 	await fs.promises.copyFile(
 		path.join(path.resolve(), "manifest.json"),
-		path.join(path.resolve(), "dist", "manifest.json")
+		path.join(path.resolve(), "dist", "manifest.json"),
 	);
 	process.exit(0);
 } else {
