@@ -26,7 +26,7 @@ Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. 
 3. Type `Split by delimiter`
 4. Press enter
 
-Splitting a note will not modify the original note. It will create a new notes in an output folder that you specify.
+Splitting a note will not modify the original note. (Unless the [delete original](#delete-original) setting is enabled.) It will create a new notes in an output folder that you specify.
 
 ### Frontmatter
 
@@ -34,6 +34,24 @@ When splitting a note, this plugin will ignore frontmatter. Only the content aft
 
 ## Settings
 
+### Folder path
+
+Folder to save the split notes to. The default is `note-splitter`.
+
+Setting this field to an empty string will save split notes to the same folder as the original note.
+
 ### Delimiter
 
 The delimiter to split by can be configured in the plugin settings. The default delimiter is a new line `\n`.
+
+### Use content as title
+
+If enabled, use the first line of the split section as the name for new notes, handling any name collisions automatically. If disabled, a timestamp is used.
+
+Disabled by default.
+
+### Delete original
+
+If enabled, the original note will be deleted after the split.
+
+Disabled by default.
