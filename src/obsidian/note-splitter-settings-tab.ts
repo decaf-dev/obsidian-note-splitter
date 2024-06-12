@@ -16,7 +16,9 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName("Folder path")
-			.setDesc("The path to the folder that split notes will be placed in")
+			.setDesc(
+				"The path to the folder that split notes will be placed in. If left empty, the folder of the original note will be used.",
+			)
 			.addText((text) =>
 				text.setValue(this.plugin.settings.saveFolderPath).onChange(async (value) => {
 					this.plugin.settings.saveFolderPath = value;

@@ -65,7 +65,10 @@ export default class NoteSplitterPlugin extends Plugin {
 					return;
 				}
 
-				const folderPath = this.settings.saveFolderPath;
+				const folderPath =
+					this.settings.saveFolderPath ||
+					file.parent?.path ||
+					this.settings.saveFolderPath;
 
 				try {
 					await this.app.vault.createFolder(folderPath);
