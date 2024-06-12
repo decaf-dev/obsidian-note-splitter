@@ -4,29 +4,32 @@
 
 Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. It allows you to split an Obsidian note into individual notes based on a specified sequence of characters (a delimiter). The default delimiter is a new line.
 
-## About
+## Table of contents
 
 -   [Installation](#installation)
 -   [Usage](#usage)
 -   [Settings](#settings)
+-   [Contributing](#contributing)
+-   [License](#license)
 
 ## Installation
 
 1. In Obsidian, open **Settings**
 2. Go to **Community plugins**
 3. Select **Browse**
-4. Search for **Note Splitter** by DecafDev
+4. Search for **Note Splitter** by **DecafDev**
 5. Select **Install**
 6. Then select **Enable**
 
 ## Usage
 
 1. Open a note that you want to split
-2. Open the Obsidian command prompt (cmd + shift + p)
-3. Type `Split by delimiter`
+2. Open the Obsidian command palette
+3. Type **Split by delimiter**
 4. Press enter
 
-Splitting a note will not modify the original note. (Unless the [delete original](#delete-original) setting is enabled.) It will create a new notes in an output folder that you specify.
+>[!NOTE]
+> Splitting a note will not modify the original note. (Unless the [delete original](#delete-original) setting is enabled.) It will create a new notes in an output folder that you specify.
 
 ### Frontmatter
 
@@ -48,10 +51,20 @@ The delimiter to split by can be configured in the plugin settings. The default 
 
 If enabled, use the first line of the split section as the name for new notes, handling any name collisions automatically. If disabled, a timestamp is used.
 
-Disabled by default.
+> [!NOTE]
+> Disabled by default.
 
 ### Delete original
 
 If enabled, the original note will be deleted after the split.
 
-Disabled by default.
+> [!NOTE]
+> Disabled by default.
+
+## Contributing
+
+Contributions are welcome. Please add a short description in your pull request about the updates that you are making.
+
+## License
+
+Note Splitter is distributed under [MIT License](https://github.com/decaf-dev/obsidian-note-splitter/blob/master/LICENSE)
