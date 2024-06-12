@@ -10,7 +10,7 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 	}
 
 	display() {
-		let { containerEl } = this;
+		const { containerEl } = this;
 
 		containerEl.empty();
 
