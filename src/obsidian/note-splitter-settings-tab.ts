@@ -27,8 +27,8 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName("delimiter")
-			.setDesc("The delimiter to split by")
+			.setName("Delimiter")
+			.setDesc("The delimiter to split by.")
 			.addText((text) =>
 				text.setValue(this.plugin.settings.delimiter).onChange(async (value) => {
 					this.plugin.settings.delimiter = value;
@@ -39,11 +39,21 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 		new Setting(containerEl)
 			.setName("Use content as title")
 			.setDesc(
-				"If true, the first sentence will be used as the title of the note, otherwise a timestamp will be used e.g. note-splitter-1702591910",
+				"If true, the first sentence will be used as the title of the note, otherwise a timestamp will be used e.g. note-splitter-1702591910.",
 			)
 			.addToggle((text) =>
 				text.setValue(this.plugin.settings.useContentAsTitle).onChange(async (value) => {
 					this.plugin.settings.useContentAsTitle = value;
+					await this.plugin.saveSettings();
+				}),
+			);
+
+		new Setting(containerEl)
+			.setName("Delete original")
+			.setDesc("Delete the original note after a successful split.")
+			.addToggle((text) =>
+				text.setValue(this.plugin.settings.deleteOriginalNote).onChange(async (value) => {
+					this.plugin.settings.deleteOriginalNote = value;
 					await this.plugin.saveSettings();
 				}),
 			);

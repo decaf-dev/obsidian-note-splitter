@@ -6,12 +6,14 @@ interface NoteSplitterSettings {
 	saveFolderPath: string;
 	useContentAsTitle: boolean;
 	delimiter: string;
+	deleteOriginalNote: boolean;
 }
 
 const DEFAULT_SETTINGS: NoteSplitterSettings = {
 	saveFolderPath: "note-splitter",
 	useContentAsTitle: false,
 	delimiter: "\\n",
+	deleteOriginalNote: false,
 };
 
 export default class NoteSplitterPlugin extends Plugin {
@@ -76,6 +78,7 @@ export default class NoteSplitterPlugin extends Plugin {
 					//Folder already exists
 				}
 
+				let filesCreated = 0;
 				for (let i = 0; i < splitLines.length; i++) {
 					const line = splitLines[i].trim();
 
@@ -91,11 +94,13 @@ export default class NoteSplitterPlugin extends Plugin {
 
 					try {
 						await this.app.vault.create(filePath, line);
+						filesCreated++;
 					} catch (err) {
 						if (err.message.includes("already exists")) {
 							const newFilePath = `${folderPath}/Split conflict ${crypto.randomUUID()}.md`;
 							try {
 								await this.app.vault.create(newFilePath, line);
+								filesCreated++;
 							} catch (err) {
 								console.error(err);
 								new Notice(`Error creating file: ${err.message}`);
@@ -106,7 +111,12 @@ export default class NoteSplitterPlugin extends Plugin {
 						console.log(err);
 					}
 				}
-				new Notice("Split into " + splitLines.length + " note" + (splitLines.length > 1 ? "s" : ""));
+
+				if (filesCreated === splitLines.length && this.settings.deleteOriginalNote) {
+					await this.app.vault.delete(file);
+				}
+
+				new Notice("Split into " + filesCreated + " note" + (filesCreated > 1 ? "s" : ""));
 			},
 		});
 	}
