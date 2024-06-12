@@ -31,9 +31,8 @@ export default class NoteSplitterPlugin extends Plugin {
 				const file = view.file;
 				if (file === null) return;
 
-				let delimiter = this.settings.delimiter;
 				//Obsidian will store `\n`` as `\\n` in the settings
-				delimiter = delimiter.replace(/\\n/g, "\n");
+				const delimiter = this.settings.delimiter.replace(/\\n/g, "\n");
 
 				if (delimiter === "") {
 					new Notice("No delimiter set. Please set a delimiter in the settings.");
@@ -80,8 +79,7 @@ export default class NoteSplitterPlugin extends Plugin {
 				}
 
 				let filesCreated = 0;
-				for (let i = 0; i < splitLines.length; i++) {
-
+				for (const [i, line] of splitLines.entries()) {
 					let fileName = line;
 					if (this.settings.useContentAsTitle) {
 						fileName = escapeInvalidFileNameChars(fileName);
