@@ -55,6 +55,7 @@ export default class NoteSplitterPlugin extends Plugin {
 
 				const splitLines = dataWithoutFrontmatter
 					.split(delimiter)
+					.map((line) => line.trim())
 					.filter((line) => line !== "");
 
 				if (splitLines.length === 0) {
@@ -80,7 +81,6 @@ export default class NoteSplitterPlugin extends Plugin {
 
 				let filesCreated = 0;
 				for (let i = 0; i < splitLines.length; i++) {
-					const line = splitLines[i].trim();
 
 					let fileName = line;
 					if (this.settings.useContentAsTitle) {
