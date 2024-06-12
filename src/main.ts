@@ -36,7 +36,7 @@ export default class NoteSplitterPlugin extends Plugin {
 				delimiter = delimiter.replace(/\\n/g, "\n");
 
 				if (delimiter === "") {
-					new Notice("No delimiter set. Please set a delimiter in the settings");
+					new Notice("No delimiter set. Please set a delimiter in the settings.");
 					return;
 				}
 
@@ -49,7 +49,7 @@ export default class NoteSplitterPlugin extends Plugin {
 					dataWithoutFrontmatter = dataWithoutFrontmatter.slice(frontmatterEndIndex + 1);
 				}
 				if (dataWithoutFrontmatter === "") {
-					new Notice("No content to split");
+					new Notice("No content to split.");
 					return;
 				}
 
@@ -58,12 +58,12 @@ export default class NoteSplitterPlugin extends Plugin {
 					.filter((line) => line !== "");
 
 				if (splitLines.length === 0) {
-					new Notice("No content to split");
+					new Notice("No content to split.");
 					return;
 				}
 
 				if (splitLines.length === 1) {
-					new Notice("Only one line found. Nothing to split");
+					new Notice("Only one line found. Nothing to split.");
 					return;
 				}
 
@@ -116,7 +116,9 @@ export default class NoteSplitterPlugin extends Plugin {
 					await this.app.vault.delete(file);
 				}
 
-				new Notice("Split into " + filesCreated + " note" + (filesCreated > 1 ? "s" : ""));
+				new Notice(
+					"Split into " + filesCreated + " note" + (filesCreated > 1 ? "s" : "") + ".",
+				);
 			},
 		});
 	}
