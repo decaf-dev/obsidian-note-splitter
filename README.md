@@ -2,7 +2,7 @@
 
 ![Obsidian Downloads](https://img.shields.io/badge/dynamic/json?logo=obsidian&color=%23483699&label=downloads&query=%24%5B%22note-splitter%22%5D.downloads&url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json)
 
-Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. It allows you to split an Obsidian note into individual notes based on a specified sequence of characters (a delimiter). The default delimiter is a new line.
+Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. It allows you to split a single Obsidian note into many notes based on a specified sequence of characters (a delimiter). The default delimiter is a new line.
 
 ## Table of contents
 
@@ -27,9 +27,10 @@ Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. 
 2. Open the Obsidian command palette
 3. Type **Split by delimiter**
 4. Press enter
+5. Your note is now split
 
 >[!NOTE]
-> Splitting a note will not modify the original note. (Unless the [delete original](#delete-original) setting is enabled.) It will create a new notes in an output folder that you specify.
+> Splitting a note will not modify the original note, unless the [delete original](#delete-original) setting is enabled. It will create new notes in an output folder that you specify.
 
 ### Frontmatter
 
@@ -63,7 +64,7 @@ If enabled, the original note will be deleted after the split.
 
 ## Contributing
 
-Contributions are welcome. Please add a short description in your pull request about the updates that you are making.
+Contributions are welcome. Please include a brief description of the changes you are making in your pull request.
 
 ## License
 
