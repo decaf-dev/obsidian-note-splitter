@@ -24,10 +24,11 @@ Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. 
 ## Usage
 
 1. Open a note that you want to split
-2. Open the Obsidian command palette
-3. Type **Split by delimiter**
-4. Press enter
-5. Your note is now split
+2. Switch to editing mode
+3. Open the Obsidian command palette
+4. Type **Split by delimiter**
+5. Press enter
+6. Your note is now split
 
 >[!NOTE]
 > Splitting a note will not modify the original note, unless the [delete original](#delete-original) setting is enabled. It will create new notes in an output folder that you specify.
