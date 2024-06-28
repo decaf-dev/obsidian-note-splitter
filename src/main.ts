@@ -1,5 +1,5 @@
 import { MarkdownView, Notice, Plugin, TFile, normalizePath } from "obsidian";
-import { escapeInvalidFileNameChars, findFrontmatterEndIndex, trimForFileName } from "./utils";
+import { escapeInvalidFileNameChars, removeFrontmatterBlock, trimForFileName } from "./utils";
 import NoteSplitterSettingsTab from "./obsidian/note-splitter-settings-tab";
 
 interface NoteSplitterSettings {
@@ -61,14 +61,9 @@ export default class NoteSplitterPlugin extends Plugin {
 			return;
 		}
 
-		const fileData = await this.app.vault.cachedRead(file);
-		const frontmatterEndIndex = findFrontmatterEndIndex(fileData);
+		const data = await this.app.vault.cachedRead(file);
 
-		let dataWithoutFrontmatter = fileData;
-		//Ignore frontmatter
-		if (frontmatterEndIndex !== -1) {
-			dataWithoutFrontmatter = dataWithoutFrontmatter.slice(frontmatterEndIndex + 1);
-		}
+		const dataWithoutFrontmatter = removeFrontmatterBlock(data);
 		if (dataWithoutFrontmatter === "") {
 			new Notice("No content to split.");
 			return;
