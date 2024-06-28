@@ -27,9 +27,18 @@ export default class NoteSplitterPlugin extends Plugin {
 		this.addCommand({
 			id: "split-by-delimiter",
 			name: "Split by delimiter",
-			editorCallback: async (_editor: Editor, view: MarkdownView) => {
+			callback: async () => {
+				const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+				if (view === null) {
+					new Notice("Please open a markdown note.");
+					return;
+				}
+
 				const file = view.file;
-				if (file === null) return;
+				if (file === null) {
+					new Notice("No file found for this note.");
+					return;
+				}
 
 				//Obsidian will store `\n`` as `\\n` in the settings
 				const delimiter = this.settings.delimiter.replace(/\\n/g, "\n");
@@ -121,7 +130,7 @@ export default class NoteSplitterPlugin extends Plugin {
 		});
 	}
 
-	onunload() {}
+	onunload() { }
 
 	async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
