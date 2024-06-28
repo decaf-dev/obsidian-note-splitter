@@ -17,6 +17,8 @@ Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. 
 
 https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/b15117e8-a297-4353-b705-13e7713872ef
 
+<br/>
+
 https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/fe4edb7c-4f4d-4f3e-b1a8-a42cd2a23706
 
 ## Installation
