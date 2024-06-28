@@ -6,11 +6,18 @@ Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. 
 
 ## Table of contents
 
+-   [Videos](#videos)
 -   [Installation](#installation)
 -   [Usage](#usage)
 -   [Settings](#settings)
 -   [Contributing](#contributing)
 -   [License](#license)
+
+## Videos
+
+https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/b15117e8-a297-4353-b705-13e7713872ef
+
+https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/fe4edb7c-4f4d-4f3e-b1a8-a42cd2a23706
 
 ## Installation
 
@@ -29,8 +36,6 @@ Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. 
 4. Type **Split by delimiter**
 5. Press enter
 6. Your note is now split
-
-https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/b15117e8-a297-4353-b705-13e7713872ef
 
 >[!NOTE]
 > Splitting a note will not modify the original note, unless the [delete original](#delete-original) setting is enabled. It will create new notes in an output folder that you specify.
@@ -57,8 +62,6 @@ If enabled, use the first line of the split section as the name for new notes, h
 
 > [!NOTE]
 > Disabled by default.
-
-https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/fe4edb7c-4f4d-4f3e-b1a8-a42cd2a23706
 
 ### Delete original
 
