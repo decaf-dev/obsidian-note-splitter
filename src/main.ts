@@ -40,6 +40,11 @@ export default class NoteSplitterPlugin extends Plugin {
 					return;
 				}
 
+				if (view.getMode() !== 'source') {
+					new Notice("Please switch to editing mode to split the note.");
+					return;
+				}
+
 				this.splitNoteByDelimiter(file);
 			},
 		});
