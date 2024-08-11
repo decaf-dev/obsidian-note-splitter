@@ -81,7 +81,7 @@ If enabled, the original note will be deleted after the split.
 
 ## Contributing
 
-Contributions are welcome. Please include a brief description of the changes you are making in your pull request.
+Issues and pull requests are welcome.
 
 ## License
 
