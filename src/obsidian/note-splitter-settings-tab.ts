@@ -39,7 +39,7 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 		new Setting(containerEl)
 			.setName("Use first line as title")
 			.setDesc(
-				"If enabled, the first line of split content will be used as the title of the split note. If disabled, a timestamp will be used e.g. note-splitter-1702591910.",
+				"If enabled, the first line of split content will be used as the title of the split note. If disabled, a timestamp will be used. e.g. note-splitter-1702591910",
 			)
 			.addToggle((text) =>
 				text.setValue(this.plugin.settings.useContentAsTitle).onChange(async (value) => {
