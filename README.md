@@ -47,7 +47,7 @@ Splitting a note with [Use content as title](#use-content-as-title) enabled
 6. Your note is now split
 
 >[!NOTE]
-> Splitting a note will not modify the original note, unless the [delete original](#delete-original) setting is enabled. It will create new notes in an output folder that you specify.
+> Splitting a note will not modify the original note, unless the [delete original](#delete-original) setting is enabled. Notes will be created in configured [output folder](#output-folder).
 
 ### Frontmatter
 
@@ -55,19 +55,19 @@ When splitting a note, this plugin will ignore frontmatter. Only the content aft
 
 ## Settings
 
-### Folder path
+### Output folder
 
-Folder to save the split notes to. The default is `note-splitter`.
+The folder to save split notes in. The default is `note-splitter`.
 
-Setting this field to an empty string will save split notes to the same folder as the original note.
+If this is set to an empty string, the split notes will be saved in the same folder as the original note.
 
 ### Delimiter
 
-The delimiter to split by can be configured in the plugin settings. The default delimiter is a new line `\n`.
+A delimiter is a sequence of characters used to divide content. When you split a note, the content before and after the delimiter will become new notes. The default delimiter is a new line character `\n`.
 
 ### Use content as title
 
-If enabled, use the first line of the split section as the name for new notes, handling any name collisions automatically. If disabled, a timestamp is used.
+If enabled, the first line of a split section will be used as the note title. If that title already exists, the note will be named Split conflict <random-uuid>. If disabled, a timestamp will be used as the note title.
 
 > [!NOTE]
 > Disabled by default.
