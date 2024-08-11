@@ -2,7 +2,7 @@
 
 ![Obsidian Downloads](https://img.shields.io/badge/dynamic/json?logo=obsidian&color=%23483699&label=downloads&query=%24%5B%22note-splitter%22%5D.downloads&url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json)
 
-Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. It allows you to split a single Obsidian note into many notes based on a specified sequence of characters (a delimiter). The default delimiter is a new line.
+Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. It allows you to split a single Obsidian note into many notes based on a specified sequence of characters (a delimiter). The default delimiter is a new line character `\n`.
 
 ## Table of contents
 
@@ -15,13 +15,13 @@ Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. 
 
 ## Videos
 
-Splitting a note without changing any settings
+Split a note without changing any settings
 
 <video src="https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/b15117e8-a297-4353-b705-13e7713872ef" controls="controls" style="max-width: 100%;">
   Your browser does not support the video tag.
 </video>
 
-Splitting a note with [Use content as title](#use-content-as-title) enabled
+Slit a note with [Use first line as title](#use-first-line-as-title) enabled
 
 <video src="https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/fe4edb7c-4f4d-4f3e-b1a8-a42cd2a23706" controls="controls" style="max-width: 100%;">
   Your browser does not support the video tag.
@@ -63,11 +63,11 @@ If this is set to an empty string, the split notes will be saved in the same fol
 
 ### Delimiter
 
-A delimiter is a sequence of characters used to divide content. When you split a note, the content before and after the delimiter will become new notes. The default delimiter is a new line character `\n`.
+A delimiter is a sequence of characters used to divide content. When you split a note, the content before and after each delimiter will become new notes. The default delimiter is a new line character `\n`.
 
-### Use content as title
+### Use first line as title
 
-If enabled, the first line of a split section will be used as the note title. If that title already exists, the note will be named Split conflict <random-uuid>. If disabled, a timestamp will be used as the note title.
+If enabled, the first line of split content will be used as the title of the split note.  If the title already exists, the conflict will be indicated by naming the note as `Split conflict <random-uuid>`. If disabled, a timestamp will be used as the title e.g. `note-splitter-1702591910`.
 
 > [!NOTE]
 > Disabled by default.
