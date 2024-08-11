@@ -15,13 +15,13 @@ Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. 
 
 ## Videos
 
-Split a note with default plugin settings.
+Split a note with default settings.
 
 <video src="https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/b15117e8-a297-4353-b705-13e7713872ef" controls="controls" style="max-width: 100%;">
   Your browser does not support the video tag.
 </video>
 
-Split a note with [Use first line as title](#use-first-line-as-title) enabled.
+Split a note with [use first line as title](#use-first-line-as-title) enabled.
 
 <video src="https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/fe4edb7c-4f4d-4f3e-b1a8-a42cd2a23706" controls="controls" style="max-width: 100%;">
   Your browser does not support the video tag.
