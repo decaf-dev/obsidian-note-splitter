@@ -97,7 +97,7 @@ export default class NoteSplitterPlugin extends Plugin {
 
 		let filesCreated = 0;
 		for (const [i, content] of splitContent.entries()) {
-			let fileName = content;
+			let fileName = content.split("\n")[0];
 			if (this.settings.useContentAsTitle) {
 				fileName = escapeInvalidFileNameChars(fileName);
 				fileName = trimForFileName(fileName, ".md");
