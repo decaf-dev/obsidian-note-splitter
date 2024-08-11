@@ -59,12 +59,15 @@ When splitting a note, frontmater is ignored. Only content after the frontmatter
 
 The folder to save split notes in. If empty, the folder of the original note will be used.
 
-> [!INFO]
-> Default is `note-splitter`
+> [!NOTE]
+> Default value is `note-splitter`
 
 ### Delimiter
 
-The sequence of characters to split by. When you split a note, the content before and after each delimiter will become new notes. The default delimiter is a new line character `\n`.
+The sequence of characters to split by. When you split a note, the content before and after each delimiter will become new notes.
+
+> [!NOTE]
+> Default value is a newline character `\n`
 
 ### Use first line as title
 
@@ -72,14 +75,14 @@ If enabled, the first line of split content will be used as the title of the spl
 
 If disabled, a timestamp will be used as the title e.g. `note-splitter-1702591910`.
 
-> [!INFO]
+> [!NOTE]
 > Disabled by default.
 
 ### Delete original
 
 If enabled, the original note will be deleted after a successful split.
 
-> [!INFO]
+> [!NOTE]
 > Disabled by default.
 
 ## Contributing
