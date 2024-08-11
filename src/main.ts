@@ -69,18 +69,18 @@ export default class NoteSplitterPlugin extends Plugin {
 			return;
 		}
 
-		const splitLines = dataWithoutFrontmatter
+		const splitContent = dataWithoutFrontmatter
 			.split(delimiter)
-			.map((line) => line.trim())
-			.filter((line) => line !== "");
+			.map((content) => content.trim())
+			.filter((content) => content !== "");
 
-		if (splitLines.length === 0) {
+		if (splitContent.length === 0) {
 			new Notice("No content to split.");
 			return;
 		}
 
-		if (splitLines.length === 1) {
-			new Notice("Only one line found. Nothing to split.");
+		if (splitContent.length === 1) {
+			new Notice("Only one piece of content found. Nothing to split.");
 			return;
 		}
 
@@ -96,8 +96,8 @@ export default class NoteSplitterPlugin extends Plugin {
 		}
 
 		let filesCreated = 0;
-		for (const [i, line] of splitLines.entries()) {
-			let fileName = line;
+		for (const [i, content] of splitContent.entries()) {
+			let fileName = content.split("\n")[0];
 			if (this.settings.useContentAsTitle) {
 				fileName = escapeInvalidFileNameChars(fileName);
 				fileName = trimForFileName(fileName, ".md");
@@ -108,13 +108,13 @@ export default class NoteSplitterPlugin extends Plugin {
 			const filePath = normalizePath(`${folderPath}/${fileName}.md`);
 
 			try {
-				await this.app.vault.create(filePath, line);
+				await this.app.vault.create(filePath, content);
 				filesCreated++;
 			} catch (err) {
 				if (err.message.includes("already exists")) {
 					const newFilePath = `${folderPath}/Split conflict ${crypto.randomUUID()}.md`;
 					try {
-						await this.app.vault.create(newFilePath, line);
+						await this.app.vault.create(newFilePath, content);
 						filesCreated++;
 					} catch (err) {
 						console.error(err);
@@ -127,7 +127,7 @@ export default class NoteSplitterPlugin extends Plugin {
 			}
 		}
 
-		if (filesCreated === splitLines.length && this.settings.deleteOriginalNote) {
+		if (filesCreated === splitContent.length && this.settings.deleteOriginalNote) {
 			await this.app.vault.delete(file);
 		}
 

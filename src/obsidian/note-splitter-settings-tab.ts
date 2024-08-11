@@ -15,9 +15,9 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 		containerEl.empty();
 
 		new Setting(containerEl)
-			.setName("Folder path")
+			.setName("Output folder")
 			.setDesc(
-				"The path to the folder that split notes will be placed in. If left empty, the folder of the original note will be used.",
+				"The folder to save split notes in. If empty, the folder of the original note will be used.",
 			)
 			.addText((text) =>
 				text.setValue(this.plugin.settings.saveFolderPath).onChange(async (value) => {
@@ -28,7 +28,7 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 
 		new Setting(containerEl)
 			.setName("Delimiter")
-			.setDesc("The delimiter to split by.")
+			.setDesc("The sequence of characters to split by.")
 			.addText((text) =>
 				text.setValue(this.plugin.settings.delimiter).onChange(async (value) => {
 					this.plugin.settings.delimiter = value;
@@ -37,9 +37,9 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName("Use content as title")
+			.setName("Use first line as title")
 			.setDesc(
-				"If true, the first sentence will be used as the title of the note, otherwise a timestamp will be used e.g. note-splitter-1702591910.",
+				"If enabled, the first line of split content will be used as the title of the split note. If disabled, a timestamp will be used. e.g. note-splitter-1702591910",
 			)
 			.addToggle((text) =>
 				text.setValue(this.plugin.settings.useContentAsTitle).onChange(async (value) => {

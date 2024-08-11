@@ -32,6 +32,6 @@ export const escapeInvalidFileNameChars = (value: string) => {
  * Trims the string to the maximum length allowed for a file name
  */
 export const trimForFileName = (value: string, extension: string) => {
-	const MAX_LENGTH_MAC_OS = 255;
-	return value.substring(0, MAX_LENGTH_MAC_OS - extension.length - 1);
+	const MAX_LENGTH = 255;
+	return value.substring(0, MAX_LENGTH - extension.length - 1);
 };
