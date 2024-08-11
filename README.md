@@ -2,7 +2,7 @@
 
 ![Obsidian Downloads](https://img.shields.io/badge/dynamic/json?logo=obsidian&color=%23483699&label=downloads&query=%24%5B%22note-splitter%22%5D.downloads&url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json)
 
-Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. It allows you to split a single Obsidian note into many notes based on a specified sequence of characters (a delimiter). The default delimiter is a new line character `\n`.
+Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. It allows you to split a single Obsidian note into many notes based on a specified sequence of characters (a delimiter). The default delimiter is a new line `\n`.
 
 ## Table of contents
 
@@ -15,13 +15,13 @@ Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. 
 
 ## Videos
 
-Split a note without changing any settings
+Split a note without default plugin settings.
 
 <video src="https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/b15117e8-a297-4353-b705-13e7713872ef" controls="controls" style="max-width: 100%;">
   Your browser does not support the video tag.
 </video>
 
-Slit a note with [Use first line as title](#use-first-line-as-title) enabled
+Split a note with [Use first line as title](#use-first-line-as-title) enabled.
 
 <video src="https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/fe4edb7c-4f4d-4f3e-b1a8-a42cd2a23706" controls="controls" style="max-width: 100%;">
   Your browser does not support the video tag.
@@ -39,7 +39,7 @@ Slit a note with [Use first line as title](#use-first-line-as-title) enabled
 
 ## Usage
 
-1. Open a note that you want to split
+1. Open the note that you want to split
 2. Switch to editing mode
 3. Open the Obsidian command palette
 4. Type **Split by delimiter**
@@ -47,23 +47,24 @@ Slit a note with [Use first line as title](#use-first-line-as-title) enabled
 6. Your note is now split
 
 >[!NOTE]
-> Splitting a note will not modify the original note, unless the [delete original](#delete-original) setting is enabled. Notes will be created in configured [output folder](#output-folder).
+> Splitting a note will not modify the original note, unless the [delete original](#delete-original) setting is enabled. Split notes are created in [output folder](#output-folder).
 
 ### Frontmatter
 
-When splitting a note, this plugin will ignore frontmatter. Only the content after the frontmatter block will be split.
+When splitting a note, frontmater is ignored. Only content after the frontmatter block is split.
 
 ## Settings
 
 ### Output folder
 
-The folder to save split notes in. The default is `note-splitter`.
+The folder to save split notes in. If empty, the folder of the original note will be used.
 
-If this is set to an empty string, the split notes will be saved in the same folder as the original note.
+> [!NOTE]
+> Default is `note-splitter`
 
 ### Delimiter
 
-A delimiter is a sequence of characters used to divide content. When you split a note, the content before and after each delimiter will become new notes. The default delimiter is a new line character `\n`.
+The sequence of characters to split by. When you split a note, the content before and after each delimiter will become new notes. The default delimiter is a new line character `\n`.
 
 ### Use first line as title
 
@@ -71,6 +72,8 @@ If enabled, the first line of split content will be used as the title of the spl
 
 > [!NOTE]
 > Disabled by default.
+
+
 
 ### Delete original
 
