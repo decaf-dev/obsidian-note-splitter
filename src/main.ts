@@ -6,6 +6,7 @@ interface NoteSplitterSettings {
 	saveFolderPath: string;
 	useContentAsTitle: boolean;
 	delimiter: string;
+	appendToSplitContent: string;
 	deleteOriginalNote: boolean;
 }
 
@@ -13,6 +14,7 @@ const DEFAULT_SETTINGS: NoteSplitterSettings = {
 	saveFolderPath: "note-splitter",
 	useContentAsTitle: false,
 	delimiter: "\\n",
+	appendToSplitContent: "",
 	deleteOriginalNote: false,
 };
 
@@ -41,7 +43,7 @@ export default class NoteSplitterPlugin extends Plugin {
 				}
 
 				if (view.getMode() !== 'source') {
-					new Notice("Please switch to editing mode to split the note.");
+					new Notice("Please switch to editing mode to split this note.");
 					return;
 				}
 
@@ -52,11 +54,13 @@ export default class NoteSplitterPlugin extends Plugin {
 
 	onunload() { }
 
-	private async splitNoteByDelimiter(file: TFile) {
-		//Obsidian will store `\n`` as `\\n` in the settings
-		const delimiter = this.settings.delimiter.replace(/\\n/g, "\n");
+	private async splitNoteByDelimiter(file: TFile,) {
+		const { delimiter} = this.settings;
 
-		if (delimiter === "") {
+		//Obsidian will store `\n`` as `\\n` in the settings
+		const escapedDelimiter = delimiter.replace(/\\n/g, "\n");
+
+		if (escapedDelimiter === "") {
 			new Notice("No delimiter set. Please set a delimiter in the settings.");
 			return;
 		}
@@ -70,7 +74,7 @@ export default class NoteSplitterPlugin extends Plugin {
 		}
 
 		const splitContent = dataWithoutFrontmatter
-			.split(delimiter)
+			.split(escapedDelimiter)
 			.map((content) => content.trim())
 			.filter((content) => content !== "");
 
@@ -80,14 +84,14 @@ export default class NoteSplitterPlugin extends Plugin {
 		}
 
 		if (splitContent.length === 1) {
-			new Notice("Only one piece of content found. Nothing to split.");
+			new Notice("Only one section of content found. Nothing to split.");
 			return;
 		}
 
+		const { saveFolderPath } = this.settings;
 		const folderPath =
-			this.settings.saveFolderPath ||
-			file.parent?.path ||
-			this.settings.saveFolderPath;
+			(saveFolderPath ||
+			file.parent?.path) ?? "";
 
 		try {
 			await this.app.vault.createFolder(folderPath);
@@ -96,9 +100,16 @@ export default class NoteSplitterPlugin extends Plugin {
 		}
 
 		let filesCreated = 0;
-		for (const [i, content] of splitContent.entries()) {
-			let fileName = content.split("\n")[0];
-			if (this.settings.useContentAsTitle) {
+		for (const [i, originalContent] of splitContent.entries()) {
+			const { appendToSplitContent, useContentAsTitle } = this.settings;
+
+			let updatedContent = originalContent;
+			if (appendToSplitContent.length > 0) {
+				updatedContent += appendToSplitContent;
+			}
+
+			let fileName = originalContent.split("\n")[0];
+			if (useContentAsTitle) {
 				fileName = escapeInvalidFileNameChars(fileName);
 				fileName = trimForFileName(fileName, ".md");
 			} else {
@@ -108,13 +119,13 @@ export default class NoteSplitterPlugin extends Plugin {
 			const filePath = normalizePath(`${folderPath}/${fileName}.md`);
 
 			try {
-				await this.app.vault.create(filePath, content);
+				await this.app.vault.create(filePath, updatedContent);
 				filesCreated++;
 			} catch (err) {
 				if (err.message.includes("already exists")) {
 					const newFilePath = `${folderPath}/Split conflict ${crypto.randomUUID()}.md`;
 					try {
-						await this.app.vault.create(newFilePath, content);
+						await this.app.vault.create(newFilePath, updatedContent);
 						filesCreated++;
 					} catch (err) {
 						console.error(err);
