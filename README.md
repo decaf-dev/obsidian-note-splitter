@@ -78,6 +78,40 @@ If disabled, a timestamp will be used as the title e.g. `note-splitter-170259191
 > [!NOTE]
 > Disabled by default.
 
+### Append to split content
+
+This text will be appended to each section of split content.
+
+**Example:**
+
+Suppose you have two sentences and your delimiter is set to a period (`.`).
+
+```markdown
+This is sentence 1. This is sentence 2.
+```
+
+The split content would result in:
+
+```markdown
+This is sentence 1
+```
+
+```markdown
+This is sentence 2
+```
+
+If you want to retain the period at the end of each sentence, simply add a period into the input field of this setting.
+
+The updated result would be:
+
+```markdown
+This is sentence 1.
+```
+
+```markdown
+This is sentence 2.
+```
+
 ### Delete original
 
 If enabled, the original note will be deleted after a successful split.
