@@ -49,6 +49,16 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
+			.setName("Append to split content")
+			.setDesc("Text to append to the split content.")
+			.addText((text) =>
+				text.setValue(this.plugin.settings.appendToSplitContent).onChange(async (value) => {
+					this.plugin.settings.appendToSplitContent = value;
+					await this.plugin.saveSettings();
+				}),
+			);
+
+		new Setting(containerEl)
 			.setName("Delete original")
 			.setDesc("Delete the original note after a successful split.")
 			.addToggle((text) =>
