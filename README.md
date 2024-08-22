@@ -10,6 +10,7 @@ Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. 
 -   [Installation](#installation)
 -   [Usage](#usage)
 -   [Settings](#settings)
+-   [Learn more](#learn-more)
 -   [Contributing](#contributing)
 -   [License](#license)
 
@@ -26,7 +27,6 @@ Split a note with [use first line as title](#use-first-line-as-title) enabled.
 <video src="https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/fe4edb7c-4f4d-4f3e-b1a8-a42cd2a23706" controls="controls" style="max-width: 100%;">
   Your browser does not support the video tag.
 </video>
-
 
 ## Installation
 
@@ -46,7 +46,7 @@ Split a note with [use first line as title](#use-first-line-as-title) enabled.
 5. Press enter
 6. See split notes in the [output folder](#output-folder)
 
->[!NOTE]
+> [!NOTE]
 > Splitting a note does not modify the original note.
 
 ### Frontmatter
@@ -118,6 +118,10 @@ If enabled, the original note will be deleted after a successful split.
 
 > [!NOTE]
 > Disabled by default.
+
+## Learn more
+
+[Steps to create Anki flashcards from an English article, using Yanki, ChatGPT, Note Splitter](https://www.youtube.com/watch?v=Gu6B7nqUV9o) by [@jdevtw](https://www.youtube.com/@jdevtw)
 
 ## Contributing
 
