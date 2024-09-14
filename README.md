@@ -78,6 +78,28 @@ If disabled, a timestamp will be used as the title e.g. `note-splitter-170259191
 > [!NOTE]
 > Disabled by default.
 
+#### Removed characters
+
+Depending on your operating system, Obsidian will not allow certain characters in a file name.
+
+When `Use first line as title` is enabled, invalid characters in the first line will be removed.
+
+| Character | Removed On            |
+| --------- | --------------------- |
+| `*`       | Windows               |
+| `"`       | Windows               |
+| `` ` ``   | Windows               |
+| `?`       | Windows               |
+| `<`       | Windows               |
+| `>`       | Windows               |
+| `:`       | Windows, macOS, Linux |
+| `\`       | Windows, macOS, Linux |
+| `/`       | Windows, macOS, Linux |
+| `^`       | Windows, macOS, Linux |
+| `[`       | Windows, macOS, Linux |
+| `]`       | Windows, macOS, Linux |
+| `#`       | Windows, macOS, Linux |
+
 ### Append to split content
 
 This text will be appended to each section of split content.
