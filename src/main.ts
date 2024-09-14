@@ -1,4 +1,4 @@
-import { MarkdownView, Notice, Plugin } from "obsidian";
+import { MarkdownView, Notice, Platform, Plugin } from "obsidian";
 import NoteSplitterSettingsTab from "./obsidian/note-splitter-settings-tab";
 import { splitByDelimiter } from "./splitter/split-by-delimiter";
 import { NodeFileSystem, NoteSplitterSettings, Notifier } from "./types";
@@ -47,7 +47,7 @@ export default class NoteSplitterPlugin extends Plugin {
 					read: (file) => this.app.vault.read(file),
 				};
 				const notifier: Notifier = (message: string) => new Notice(message);
-				await splitByDelimiter(fileSystem, notifier, file, this.settings);
+				await splitByDelimiter(fileSystem, notifier, file, Platform.isWin, this.settings);
 			},
 		});
 	}
