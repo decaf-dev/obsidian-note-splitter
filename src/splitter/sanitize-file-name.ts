@@ -8,6 +8,7 @@ export const sanitizeFileName = (name: string, isWindows: boolean) => {
 		name = name.replace(/>/g, ""); // Remove greater than (Windows)
 		name = name.replace(/"/g, ""); // Remove double quote (Windows)
 		name = name.replace(/\*/g, ""); // Remove asterisk (Windows)
+		name = name.replace(/`/g, ""); // Remove backtick (Windows)
 	}
 
 	name = name.replace(/:/g, ""); // Remove colon (Windows, macOS)
