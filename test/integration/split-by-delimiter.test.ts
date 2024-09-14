@@ -30,7 +30,7 @@ describe("splitByDelimiter", () => {
 			path: "file1.md",
 		} as TFile;
 
-		await splitByDelimiter(mockFileSystem, mockNotifier, file, {
+		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "",
 			saveFolderPath: "",
 			useContentAsTitle: false,
@@ -47,7 +47,7 @@ describe("splitByDelimiter", () => {
 			path: "file1.md",
 		} as TFile;
 
-		await splitByDelimiter(mockFileSystem, mockNotifier, file, {
+		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "\n",
 			saveFolderPath: "",
 			useContentAsTitle: false,
@@ -64,7 +64,7 @@ describe("splitByDelimiter", () => {
 			path: "file2.md",
 		} as TFile;
 
-		await splitByDelimiter(mockFileSystem, mockNotifier, file, {
+		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "\n",
 			saveFolderPath: "",
 			useContentAsTitle: false,
@@ -81,7 +81,7 @@ describe("splitByDelimiter", () => {
 			path: "file3.md",
 		} as TFile;
 
-		await splitByDelimiter(mockFileSystem, mockNotifier, file, {
+		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "\n",
 			saveFolderPath: "",
 			useContentAsTitle: false,
@@ -109,7 +109,7 @@ describe("splitByDelimiter", () => {
 			path: "file3.md",
 		} as TFile;
 
-		await splitByDelimiter(mockFileSystem, mockNotifier, file, {
+		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "\n",
 			saveFolderPath: "",
 			useContentAsTitle: false,
@@ -126,7 +126,7 @@ describe("splitByDelimiter", () => {
 			path: "file3.md",
 		} as TFile;
 
-		await splitByDelimiter(mockFileSystem, mockNotifier, file, {
+		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "\n",
 			saveFolderPath: "",
 			useContentAsTitle: false,
@@ -150,7 +150,7 @@ describe("splitByDelimiter", () => {
 			path: "file3.md",
 		} as TFile;
 
-		await splitByDelimiter(mockFileSystem, mockNotifier, file, {
+		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "\n",
 			saveFolderPath: "",
 			useContentAsTitle: true,

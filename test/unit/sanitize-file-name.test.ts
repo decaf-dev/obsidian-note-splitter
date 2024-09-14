@@ -6,10 +6,10 @@ describe("sanitizeFileName", () => {
 		const content = "file:name";
 
 		// Act
-		const result = sanitizeFileName(content);
+		const result = sanitizeFileName(content, false);
 
 		// Assert
-		expect(result).toEqual("file-name");
+		expect(result).toEqual("filename");
 	});
 
 	it("should replace backslash with space", () => {
@@ -17,10 +17,10 @@ describe("sanitizeFileName", () => {
 		const content = "file\\name";
 
 		// Act
-		const result = sanitizeFileName(content);
+		const result = sanitizeFileName(content, false);
 
 		// Assert
-		expect(result).toEqual("file name");
+		expect(result).toEqual("filename");
 	});
 
 	it("should replace forward slash with space", () => {
@@ -28,10 +28,10 @@ describe("sanitizeFileName", () => {
 		const content = "file//name";
 
 		// Act
-		const result = sanitizeFileName(content);
+		const result = sanitizeFileName(content, false);
 
 		// Assert
-		expect(result).toEqual("file  name");
+		expect(result).toEqual("filename");
 	});
 
 	it("should remove invalid characters", () => {
@@ -39,7 +39,7 @@ describe("sanitizeFileName", () => {
 		const content = "file name #|^[]";
 
 		// Act
-		const result = sanitizeFileName(content);
+		const result = sanitizeFileName(content, false);
 
 		// Assert
 		expect(result).toEqual("file name");

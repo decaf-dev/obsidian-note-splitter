@@ -1,4 +1,4 @@
-import { normalizePath, TFile } from "obsidian";
+import { normalizePath, Platform, TFile } from "obsidian";
 import { removeFrontmatterBlock } from "./remove-frontmatter-block";
 import { sanitizeFileName } from "./sanitize-file-name";
 import { truncateFileName } from "./truncate-file-name";
@@ -8,6 +8,7 @@ export const splitByDelimiter = async (
 	fileSystem: NodeFileSystem,
 	notify: Notifier,
 	file: TFile,
+	isWindows: boolean,
 	{
 		delimiter,
 		saveFolderPath,
@@ -69,8 +70,8 @@ export const splitByDelimiter = async (
 			fileName = `split-note-${Date.now() + i}.md`;
 		}
 
-		fileName = sanitizeFileName(fileName);
-		fileName = truncateFileName(fileName);
+		fileName = sanitizeFileName(fileName, isWindows);
+		fileName = truncateFileName(fileName, ".md");
 
 		const filePath = normalizePath(`${folderPath}/${fileName}`);
 
