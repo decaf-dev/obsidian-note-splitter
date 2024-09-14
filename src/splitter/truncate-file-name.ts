@@ -1,15 +1,14 @@
 /**
  * Truncates the string to the maximum length allowed for a file name
  */
-export const truncateFileName = (name: string) => {
+export const truncateFileName = (name: string, extension: string) => {
 	const MAX_LENGTH = 255;
 
-	const splitArr = name.split(".");
-	if (splitArr.length < 2) {
-		throw new Error("Invalid file name");
+	//Add support for links
+	let length = name.length;
+	if (length > MAX_LENGTH) {
+		length = MAX_LENGTH;
 	}
 
-	const baseName = splitArr[0];
-	const extension = splitArr[1];
-	return baseName.substring(0, MAX_LENGTH - extension.length - 1) + "." + splitArr[1];
+	return name.substring(0, length - extension.length) + extension;
 };

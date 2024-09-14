@@ -71,7 +71,7 @@ export const splitByDelimiter = async (
 		}
 
 		fileName = sanitizeFileName(fileName, isWindows);
-		fileName = truncateFileName(fileName);
+		fileName = truncateFileName(fileName, ".md");
 
 		const filePath = normalizePath(`${folderPath}/${fileName}`);
 
