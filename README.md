@@ -71,7 +71,7 @@ The sequence of characters to split by. When you split a note, the content befor
 
 ## Remove delimiter
 
-If enabled, the delimiter will be removed from the split notes.
+If enabled, the delimiter will not be included in the content of split notes.
 
 For example, suppose you have two sentences and your delimiter is set to a period `.`.
 
