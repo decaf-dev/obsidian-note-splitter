@@ -69,6 +69,39 @@ The sequence of characters to split by. When you split a note, the content befor
 > [!NOTE]
 > Default value is a newline character `\n`
 
+## Remove delimiter
+
+If enabled, the delimiter will be removed from the split notes.
+
+For example, suppose you have two sentences and your delimiter is set to a period (`.`).
+
+```markdown
+This is sentence 1. This is sentence 2.
+```
+
+If this setting is enabled, the output will be:
+
+```markdown
+This is sentence 1
+```
+
+```markdown
+This is sentence 2
+```
+
+If you wanted to retain the period in each split note, you could disable this setting. The output would then be:
+
+```markdown
+This is sentence 1.
+```
+
+```markdown
+This is sentence 2.
+```
+
+> [!NOTE]
+> Enabled by default.
+
 ### Use first line as title
 
 If enabled, the first line of split content will be used as the title of the split note. If the title already exists, the conflict will be indicated by naming the note as `Split conflict <random-uuid>`.
@@ -103,36 +136,6 @@ When `Use first line as title` is enabled, invalid characters in the first line 
 ### Append to split content
 
 This text will be appended to each section of split content.
-
-**Example:**
-
-Suppose you have two sentences and your delimiter is set to a period (`.`).
-
-```markdown
-This is sentence 1. This is sentence 2.
-```
-
-The split content would result in:
-
-```markdown
-This is sentence 1
-```
-
-```markdown
-This is sentence 2
-```
-
-If you want to retain the period at the end of each sentence, simply add a period into the input field of this setting.
-
-The updated result would be:
-
-```markdown
-This is sentence 1.
-```
-
-```markdown
-This is sentence 2.
-```
 
 ### Delete original
 
