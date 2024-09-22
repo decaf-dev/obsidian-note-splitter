@@ -210,6 +210,7 @@ describe("splitByDelimiter", () => {
 		});
 
 		//Assert
+		expect(mockFileSystem.create).toHaveBeenCalledTimes(2);
 		expect(mockFileSystem.create).toHaveBeenCalledWith(
 			expect.stringContaining("split-note"),
 			"This is sentence 1.",

@@ -43,14 +43,14 @@ export const splitByDelimiter = async (
 
 	const splitContent = contentWithoutFrontmatter
 		.split(escapedDelimiter)
+		.map((splitContent) => splitContent.trim())
+		.filter((splitContent) => splitContent !== "")
 		.map((splitContent) => {
-			const trimmedContent = splitContent.trim();
 			if (!removeDelimiter) {
-				return trimmedContent + delimiter;
+				return splitContent + delimiter;
 			}
-			return trimmedContent;
-		})
-		.filter((splitContent) => splitContent !== "");
+			return splitContent;
+		});
 
 	if (splitContent.length === 1) {
 		notify("Only one section of content found. Nothing to split.");
