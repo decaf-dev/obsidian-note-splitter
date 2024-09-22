@@ -9,21 +9,24 @@ export const splitByDelimiter = async (
 	notify: Notifier,
 	file: TFile,
 	isWindows: boolean,
-	{
-		delimiter,
-		saveFolderPath,
-		useContentAsTitle,
-		appendToSplitContent,
-		deleteOriginalNote,
-	}: Pick<
+	settings: Pick<
 		NoteSplitterSettings,
 		| "saveFolderPath"
 		| "delimiter"
+		| "removeDelimiter"
 		| "useContentAsTitle"
 		| "appendToSplitContent"
 		| "deleteOriginalNote"
 	>,
 ) => {
+	const {
+		delimiter,
+		saveFolderPath,
+		useContentAsTitle,
+		appendToSplitContent,
+		removeDelimiter,
+		deleteOriginalNote,
+	} = settings;
 	const escapedDelimiter = delimiter.replace(/\\n/g, "\n");
 
 	if (escapedDelimiter === "") {
@@ -31,17 +34,23 @@ export const splitByDelimiter = async (
 		return;
 	}
 
-	const data = await fileSystem.read(file);
-	const dataWithoutFrontmatter = removeFrontmatterBlock(data);
-	if (dataWithoutFrontmatter === "") {
+	const content = await fileSystem.read(file);
+	const contentWithoutFrontmatter = removeFrontmatterBlock(content);
+	if (contentWithoutFrontmatter === "") {
 		notify("No content to split.");
 		return;
 	}
 
-	const splitContent = dataWithoutFrontmatter
+	const splitContent = contentWithoutFrontmatter
 		.split(escapedDelimiter)
-		.map((content) => content.trim())
-		.filter((content) => content !== "");
+		.map((splitContent) => splitContent.trim())
+		.filter((splitContent) => splitContent !== "")
+		.map((splitContent) => {
+			if (!removeDelimiter) {
+				return splitContent + delimiter;
+			}
+			return splitContent;
+		});
 
 	if (splitContent.length === 1) {
 		notify("Only one section of content found. Nothing to split.");

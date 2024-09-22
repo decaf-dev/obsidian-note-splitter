@@ -37,6 +37,18 @@ export default class NoteSplitterSettingsTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
+			.setName("Remove delimiter")
+			.setDesc(
+				"If enabled, the delimiter will not be included in the content of split notes.",
+			)
+			.addToggle((cb) =>
+				cb.setValue(this.plugin.settings.removeDelimiter).onChange(async (value) => {
+					this.plugin.settings.removeDelimiter = value;
+					await this.plugin.saveSettings();
+				}),
+			);
+
+		new Setting(containerEl)
 			.setName("Use first line as title")
 			.setDesc(
 				"If enabled, the first line of split content will be used as the title of the split note. If disabled, a timestamp will be used. e.g. note-splitter-1702591910",

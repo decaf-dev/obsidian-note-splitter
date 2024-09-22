@@ -2,7 +2,7 @@
 
 ![Obsidian Downloads](https://img.shields.io/badge/dynamic/json?logo=obsidian&color=%23483699&label=downloads&query=%24%5B%22note-splitter%22%5D.downloads&url=https%3A%2F%2Fraw.githubusercontent.com%2Fobsidianmd%2Fobsidian-releases%2Fmaster%2Fcommunity-plugin-stats.json)
 
-Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. It allows you to split a single note into many notes based on a specified sequence of characters (a delimiter).
+Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. It allows you to split a single note into many notes based on a sequence of characters (a delimiter).
 
 ## Table of contents
 
@@ -16,7 +16,7 @@ Note splitter is an [Obsidian.md](https://obsidian.md) plugin for desktop only. 
 
 ## Videos
 
-Split a note with default settings.
+Split a note using default settings.
 
 <video src="https://github.com/decaf-dev/obsidian-note-splitter/assets/40307803/b15117e8-a297-4353-b705-13e7713872ef" controls="controls" style="max-width: 100%;">
   Your browser does not support the video tag.
@@ -39,7 +39,7 @@ Split a note with [use first line as title](#use-first-line-as-title) enabled.
 
 ## Usage
 
-1. Open the note that you want to split
+1. Open a note that you want to split
 2. Switch to editing mode
 3. Open the Obsidian command palette
 4. Type **Split by delimiter**
@@ -47,7 +47,7 @@ Split a note with [use first line as title](#use-first-line-as-title) enabled.
 6. See split notes in the [output folder](#output-folder)
 
 > [!NOTE]
-> Splitting a note does not modify the original note.
+> Splitting a note will not modify the original note.
 
 ### Frontmatter
 
@@ -57,7 +57,7 @@ When splitting a note, frontmater is ignored. Only content after the frontmatter
 
 ### Output folder
 
-The folder to save split notes in. If empty, the folder of the original note will be used.
+The folder to save split notes in. If the input is empty, the folder of the original note will be used.
 
 > [!NOTE]
 > Default value is `note-splitter`
@@ -67,7 +67,40 @@ The folder to save split notes in. If empty, the folder of the original note wil
 The sequence of characters to split by. When you split a note, the content before and after each delimiter will become new notes.
 
 > [!NOTE]
-> Default value is a newline character `\n`
+> The default value is a newline character `\n`
+
+## Remove delimiter
+
+If enabled, the delimiter will not be included in the content of split notes.
+
+For example, suppose you have two sentences and your delimiter is set to a period `.`.
+
+```markdown
+This is sentence 1. This is sentence 2.
+```
+
+If this setting is enabled, the output will be:
+
+```markdown
+This is sentence 1
+```
+
+```markdown
+This is sentence 2
+```
+
+If you wanted to retain the period in each split note, you could disable this setting. The output would then be:
+
+```markdown
+This is sentence 1.
+```
+
+```markdown
+This is sentence 2.
+```
+
+> [!NOTE]
+> Enabled by default.
 
 ### Use first line as title
 
@@ -102,37 +135,7 @@ When `Use first line as title` is enabled, invalid characters in the first line 
 
 ### Append to split content
 
-This text will be appended to each section of split content.
-
-**Example:**
-
-Suppose you have two sentences and your delimiter is set to a period (`.`).
-
-```markdown
-This is sentence 1. This is sentence 2.
-```
-
-The split content would result in:
-
-```markdown
-This is sentence 1
-```
-
-```markdown
-This is sentence 2
-```
-
-If you want to retain the period at the end of each sentence, simply add a period into the input field of this setting.
-
-The updated result would be:
-
-```markdown
-This is sentence 1.
-```
-
-```markdown
-This is sentence 2.
-```
+This is text that should appended to the content of each split note.
 
 ### Delete original
 
