@@ -4,6 +4,7 @@ export interface NoteSplitterSettings {
 	saveFolderPath: string;
 	useContentAsTitle: boolean;
 	delimiter: string;
+	removeDelimiter: boolean;
 	appendToSplitContent: string;
 	deleteOriginalNote: boolean;
 }

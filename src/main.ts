@@ -7,6 +7,7 @@ const DEFAULT_SETTINGS: NoteSplitterSettings = {
 	saveFolderPath: "note-splitter",
 	useContentAsTitle: false,
 	delimiter: "\\n",
+	removeDelimiter: true,
 	appendToSplitContent: "",
 	deleteOriginalNote: false,
 };
