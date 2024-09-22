@@ -8,8 +8,12 @@ const mockFileSystem: NodeFileSystem = {
 			return Promise.resolve("---\nkey:value\n---\n");
 		} else if (file.path === "file2.md") {
 			return Promise.resolve("This is my content");
-		} else {
+		} else if (file.path === "file3.md") {
 			return Promise.resolve("This is sentence 1\nThis is sentence 2");
+		} else if (file.path === "file4.md") {
+			return Promise.resolve("This is sentence 1. This is sentence 2.");
+		} else {
+			throw new Error("File not handled");
 		}
 	}),
 	create: jest.fn(),
@@ -30,14 +34,17 @@ describe("splitByDelimiter", () => {
 			path: "file1.md",
 		} as TFile;
 
+		//Act
 		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "",
 			saveFolderPath: "",
 			useContentAsTitle: false,
 			appendToSplitContent: "",
+			removeDelimiter: true,
 			deleteOriginalNote: false,
 		});
 
+		//Assert
 		expect(mockNotifier).toHaveBeenCalledWith(expect.stringContaining("No delimiter"));
 	});
 
@@ -47,14 +54,17 @@ describe("splitByDelimiter", () => {
 			path: "file1.md",
 		} as TFile;
 
+		//Act
 		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "\n",
 			saveFolderPath: "",
 			useContentAsTitle: false,
 			appendToSplitContent: "",
+			removeDelimiter: true,
 			deleteOriginalNote: false,
 		});
 
+		//Assert
 		expect(mockNotifier).toHaveBeenCalledWith(expect.stringContaining("No content"));
 	});
 
@@ -64,14 +74,17 @@ describe("splitByDelimiter", () => {
 			path: "file2.md",
 		} as TFile;
 
+		//Act
 		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "\n",
 			saveFolderPath: "",
 			useContentAsTitle: false,
 			appendToSplitContent: "",
+			removeDelimiter: true,
 			deleteOriginalNote: false,
 		});
 
+		//Assert
 		expect(mockNotifier).toHaveBeenCalledWith(expect.stringContaining("one section"));
 	});
 
@@ -81,14 +94,17 @@ describe("splitByDelimiter", () => {
 			path: "file3.md",
 		} as TFile;
 
+		//Act
 		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "\n",
 			saveFolderPath: "",
 			useContentAsTitle: false,
 			appendToSplitContent: "",
+			removeDelimiter: true,
 			deleteOriginalNote: false,
 		});
 
+		//Assert
 		expect(mockFileSystem.read).toHaveBeenCalledTimes(1);
 		expect(mockFileSystem.create).toHaveBeenCalledTimes(2);
 		expect(mockFileSystem.create).toHaveBeenCalledWith(
@@ -109,14 +125,17 @@ describe("splitByDelimiter", () => {
 			path: "file3.md",
 		} as TFile;
 
+		//Act
 		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "\n",
 			saveFolderPath: "",
 			useContentAsTitle: false,
 			appendToSplitContent: "",
+			removeDelimiter: true,
 			deleteOriginalNote: true,
 		});
 
+		//Assert
 		expect(mockFileSystem.delete).toHaveBeenCalledWith(file);
 	});
 
@@ -126,14 +145,17 @@ describe("splitByDelimiter", () => {
 			path: "file3.md",
 		} as TFile;
 
+		//Act
 		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "\n",
 			saveFolderPath: "",
 			useContentAsTitle: false,
 			appendToSplitContent: ".",
+			removeDelimiter: true,
 			deleteOriginalNote: false,
 		});
 
+		//Assert
 		expect(mockFileSystem.create).toHaveBeenCalledWith(
 			expect.stringContaining("split-note"),
 			"This is sentence 1.",
@@ -150,14 +172,17 @@ describe("splitByDelimiter", () => {
 			path: "file3.md",
 		} as TFile;
 
+		//Act
 		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
 			delimiter: "\n",
 			saveFolderPath: "",
 			useContentAsTitle: true,
 			appendToSplitContent: "",
+			removeDelimiter: true,
 			deleteOriginalNote: false,
 		});
 
+		//Assert
 		expect(mockFileSystem.create).toHaveBeenCalledWith(
 			expect.stringContaining("sentence 1"),
 			"This is sentence 1",
@@ -165,6 +190,33 @@ describe("splitByDelimiter", () => {
 		expect(mockFileSystem.create).toHaveBeenCalledWith(
 			expect.stringContaining("sentence 2"),
 			"This is sentence 2",
+		);
+	});
+
+	it("should retain delimiter if removeDelimiter is false", async () => {
+		// Arrange
+		const file = {
+			path: "file4.md",
+		} as TFile;
+
+		//Act
+		await splitByDelimiter(mockFileSystem, mockNotifier, file, false, {
+			delimiter: ".",
+			saveFolderPath: "",
+			useContentAsTitle: false,
+			appendToSplitContent: "",
+			removeDelimiter: false,
+			deleteOriginalNote: false,
+		});
+
+		//Assert
+		expect(mockFileSystem.create).toHaveBeenCalledWith(
+			expect.stringContaining("split-note"),
+			"This is sentence 1.",
+		);
+		expect(mockFileSystem.create).toHaveBeenCalledWith(
+			expect.stringContaining("split-note"),
+			"This is sentence 2.",
 		);
 	});
 });
